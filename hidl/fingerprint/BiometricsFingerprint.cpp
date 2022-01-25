@@ -89,9 +89,15 @@ Return<void> BiometricsFingerprint::onFingerUp() {
     return Void();
 }
 
-Return<void> BiometricsFingerprint::onHideUdfpsOverlay() { return Void(); }
+Return<void> BiometricsFingerprint::onHideUdfpsOverlay() {
+    mVendorDisplayService->setMode(OP_FINISH_FP_ENROLL, 0);
+    return Void();
+}
 
-Return<void> BiometricsFingerprint::onShowUdfpsOverlay() { return Void(); }
+Return<void> BiometricsFingerprint::onShowUdfpsOverlay() {
+    mVendorDisplayService->setMode(OP_FINISH_FP_ENROLL, 1);
+    return Void();
+}
 
 Return<RequestStatus> BiometricsFingerprint::ErrorFilter(int32_t error) {
     switch(error) {
